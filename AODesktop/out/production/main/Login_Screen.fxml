@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ao.desktop.controllers.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane id="Pane1" prefHeight="356.0" prefWidth="492.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <Button id="SignInButton" fx:id="signInButton" layoutX="338.0" layoutY="225.0" mnemonicParsing="false" onAction="#signIn" prefHeight="35.0" prefWidth="104.0" text="Sign in" />
+            <Label fx:id="Titlelabel" layoutX="85.0" layoutY="23.0" prefHeight="41.0" prefWidth="370.0" text="Welcome to Quick Attendance">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="UserNameInput" layoutX="172.0" layoutY="217.0" />
+            <TextField fx:id="PasswordInput" layoutX="172.0" layoutY="253.0" />
+            <Label fx:id="Usernamelabel" layoutX="99.0" layoutY="221.0" prefHeight="17.0" prefWidth="63.0" text="Username:" />
+            <Label fx:id="PasswordLabel" layoutX="99.0" layoutY="257.0" prefHeight="17.0" prefWidth="63.0" text="Password:" />
+
+            <Label fx:id="Titleprompt" layoutX="85.0" layoutY="64.0" prefHeight="25.0" prefWidth="132.0" text="Please Sign in below!" />
+            <Label fx:id="errorSignIn" layoutX="99.0" layoutY="285.0" prefHeight="25.0" prefWidth="230.0" />
+            <ImageView fitHeight="73.0" fitWidth="63.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Android-Near-Field-Communication-238x300.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</GridPane>
