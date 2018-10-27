@@ -1,5 +1,6 @@
 package com.ao.desktop.controllers;
 
+import com.ao.desktop.database.SQLManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +18,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
-
 
 public class Controller implements Initializable
 {
@@ -31,19 +30,20 @@ public class Controller implements Initializable
     @FXML
     private Label errorSignIn;
 
-    private String tempUser;
-    private String tempPass;
     @FXML
     public void signIn(ActionEvent e)
     {
-         String teachUser = "Wenjia";
-         String teachPass = "Li";
-        tempUser= UserNameInput.getText();
-        tempPass = PasswordInput.getText();
+        String username = UserNameInput.getText();
+        String password = PasswordInput.getText();
 
-        if(!tempUser.equals(teachUser) || !tempPass.equals(teachPass))
-        {
-            errorSignIn.setText("Wrong username or password");
+        SQLManager manager = new SQLManager();
+        if (!manager.isInitialize()) {
+            errorSignIn.setText("Error connecting to the database.");
+            return;
+        }
+
+        if (!manager.login(username, password)) {
+               errorSignIn.setText("Incorrect username or password.");
         }
         else
         {
