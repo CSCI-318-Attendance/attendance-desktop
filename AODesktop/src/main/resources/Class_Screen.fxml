@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lavender;" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="26.0" layoutY="22.0" prefHeight="30.0" prefWidth="297.0" text="Students May Now Sign in">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ListView layoutX="26.0" layoutY="76.0" prefHeight="305.0" prefWidth="297.0" />
+      <Label layoutX="330.0" layoutY="90.0" prefHeight="52.0" prefWidth="94.0" text="# Absent">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="absentLabel" layoutX="431.0" layoutY="106.0" prefHeight="21.0" prefWidth="70.0" text="Label" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="356.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@NFC%20reading.gif" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
