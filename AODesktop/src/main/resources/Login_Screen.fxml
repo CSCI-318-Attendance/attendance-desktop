@@ -24,23 +24,26 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane id="Pane1" prefHeight="357.0" prefWidth="493.0" style="-fx-background-color: lavender;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Pane id="Pane1" prefHeight="357.0" prefWidth="493.0" style="-fx-background-color: dimgray;" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <children>
-            <Button id="SignInButton" fx:id="signInButton" layoutX="338.0" layoutY="225.0" mnemonicParsing="false" onAction="#signIn" prefHeight="35.0" prefWidth="104.0" text="Sign in" />
-            <Label fx:id="Titlelabel" layoutX="85.0" layoutY="23.0" prefHeight="41.0" prefWidth="370.0" text="Welcome to Quick Attendance">
+            <Button id="SignInButton" fx:id="signInButton" layoutX="338.0" layoutY="225.0" mnemonicParsing="false" onAction="#signIn" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: ;" text="Sign in" textFill="#171717" />
+            <Label fx:id="Titlelabel" layoutX="85.0" layoutY="23.0" prefHeight="41.0" prefWidth="370.0" text="Welcome to Attendance Overview" textFill="#a4e445">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <TextField fx:id="UserNameInput" layoutX="172.0" layoutY="217.0" />
             <TextField fx:id="PasswordInput" layoutX="172.0" layoutY="253.0" />
-            <Label fx:id="Usernamelabel" layoutX="99.0" layoutY="221.0" prefHeight="17.0" prefWidth="63.0" text="Username:" />
-            <Label fx:id="PasswordLabel" layoutX="99.0" layoutY="257.0" prefHeight="17.0" prefWidth="63.0" text="Password:" />
+            <Label fx:id="Usernamelabel" layoutX="99.0" layoutY="221.0" prefHeight="17.0" prefWidth="63.0" text="Username:" textFill="#a4e445" />
+            <Label fx:id="PasswordLabel" layoutX="99.0" layoutY="257.0" prefHeight="17.0" prefWidth="63.0" text="Password:" textFill="#a4e445" />
 
-            <Label fx:id="Titleprompt" layoutX="85.0" layoutY="64.0" prefHeight="25.0" prefWidth="132.0" text="Please Sign in below!" />
+            <Label fx:id="Titleprompt" layoutX="85.0" layoutY="64.0" prefHeight="35.0" prefWidth="181.0" text="Please Sign in below!" textFill="#a4e445">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
             <Label fx:id="errorSignIn" layoutX="99.0" layoutY="285.0" prefHeight="25.0" prefWidth="230.0" />
             <ImageView fitHeight="73.0" fitWidth="63.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
