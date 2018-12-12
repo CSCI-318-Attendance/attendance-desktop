@@ -34,7 +34,7 @@
             <ListView fx:id="listClasses" editable="true" layoutX="17.0" layoutY="52.0" prefHeight="277.0" prefWidth="263.0" style="-fx-background-color: lightgray;" />
             <Button fx:id="startButton" layoutX="301.0" layoutY="65.0" mnemonicParsing="false" onAction="#StartButton" prefHeight="38.0" prefWidth="128.0" text="Start Attendance" />
             <Button fx:id="addClass" layoutX="301.0" layoutY="131.0" mnemonicParsing="false" onAction="#addClass" prefHeight="38.0" prefWidth="128.0" text="Add a New Class" />
-            <Button fx:id="removeClass" layoutX="301.0" layoutY="198.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="128.0" text="Remove a Class" />
+            <Button fx:id="removeClass" layoutX="301.0" layoutY="198.0" mnemonicParsing="false" onAction="#removeClass" prefHeight="38.0" prefWidth="128.0" text="Remove a Class" />
             <Label layoutX="17.0" layoutY="32.0" prefHeight="17.0" prefWidth="172.0" text="Select a class below" textFill="#a4e445" />
             <Label fx:id="noClassLabel" layoutX="126.0" layoutY="32.0" prefHeight="17.0" prefWidth="285.0" textFill="#ff1c1c" />
          </children>

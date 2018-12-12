@@ -35,7 +35,7 @@ public class MainController implements Initializable
     public String selectedClass;
     Stage AddStage = new Stage();
     AddClassController get = new AddClassController();
-
+    SQLManager sql = new SQLManager();
     public void StartButton(ActionEvent start) throws IOException
     {
 
@@ -78,7 +78,7 @@ public class MainController implements Initializable
     @FXML
     public void DisplayClass()
     {
-        SQLManager sql = new SQLManager();
+
         if(sql.isInitialize())
         {
             List<String> list = sql.getClasses();
@@ -95,9 +95,20 @@ public class MainController implements Initializable
     {
         DisplayClass();
     }
-
-    public void removeClass()
+    @FXML
+    public void removeClass(ActionEvent r)
     {
-        //Todo add sql implementation for deleting an element
+
+        String remove =listClasses.getSelectionModel().getSelectedItem();
+        if(remove == null)
+        {
+            noClassLabel.setText("Please select a class to remove");
+        }
+        else
+        {
+            sql.removeClass(remove);
+            DisplayClass();
+        }
+
     }
 }

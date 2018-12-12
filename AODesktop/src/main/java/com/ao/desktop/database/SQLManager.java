@@ -87,4 +87,31 @@ public class SQLManager {
         }
         return classNames;
     }
+    public boolean removeClass(String name)
+    {
+        String query = "Delete * FROM class_titles WHERE title=?";
+        try {
+            PreparedStatement prepStmt =conn.prepareStatement(query);
+            prepStmt.setString(1,name);
+            prepStmt.execute();
+            prepStmt.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public String getStudent(String id)
+    {
+        String name="";
+        String query = "SELECT * FROM students";
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(query);
+            ResultSet rs = prepStmt.executeQuery();
+            name =rs.getString("name");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
 }
