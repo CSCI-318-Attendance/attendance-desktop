@@ -1,4 +1,5 @@
 package com.ao.desktop.controllers;
+import com.ao.desktop.database.SQLManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,9 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 public class MainController implements Initializable
 {
@@ -31,8 +32,6 @@ public class MainController implements Initializable
     private Button goback;
     @FXML
     ListView<String> listClasses = new ListView<String>();
-    ObservableList<String> Classes = FXCollections.observableArrayList("CSCI 318 Section M01", "CSCI 318 Section M02", "CSCI 318 Section M03");
-
     public String selectedClass;
     Stage AddStage = new Stage();
     AddClassController get = new AddClassController();
@@ -59,7 +58,7 @@ public class MainController implements Initializable
     }
 
     @FXML
-    public void AddClass(ActionEvent add)
+    public void addClass(ActionEvent add)
     {
         try {
 
@@ -67,6 +66,7 @@ public class MainController implements Initializable
             AddStage.setTitle("Add a Class");
             AddStage.setScene(new Scene(root, 304, 100));
             AddStage.show();
+            AddClassController.setController(this);
         }
         catch(IOException ex)
         {
@@ -78,7 +78,16 @@ public class MainController implements Initializable
     @FXML
     public void DisplayClass()
     {
-        listClasses.setItems(Classes);
+        SQLManager sql = new SQLManager();
+        if(sql.isInitialize())
+        {
+            List<String> list = sql.getClasses();
+            ObservableList<String> Classes = FXCollections.observableArrayList(list);
+            listClasses.setItems(Classes);
+        }
+
+
+
     }
 
     @FXML

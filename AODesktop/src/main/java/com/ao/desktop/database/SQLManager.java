@@ -1,6 +1,8 @@
 package com.ao.desktop.database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLManager {
 
@@ -53,5 +55,36 @@ public class SQLManager {
             System.out.println("There was an error when logging in: " + ex);
         }
         return false;
+    }
+    public boolean saveClass(String newSection)
+    {
+        String query = " INSERT INTO class_titles(title) VALUES(?)";
+        try {
+            PreparedStatement prepStmt= conn.prepareStatement(query);
+            prepStmt.setString(1, newSection);
+            prepStmt.execute();
+            prepStmt.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public List<String> getClasses()
+    {
+        List<String> classNames = new ArrayList<>();
+        String query = "SELECT * FROM class_titles";
+        try {
+            PreparedStatement prepStmt =conn.prepareStatement(query);
+            ResultSet rs = prepStmt.executeQuery();
+            while(rs.next())
+            {
+                classNames.add(rs.getString("title"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return classNames;
     }
 }

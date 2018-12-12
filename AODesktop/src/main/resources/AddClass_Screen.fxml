@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="100.0" prefWidth="304.0" style="-fx-background-color: dimgray;" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ao.desktop.controllers.AddClassController">
    <children>
       <TextField fx:id="ClassNameField" layoutX="14.0" layoutY="36.0" prefHeight="39.0" prefWidth="177.0" style="-fx-background-color: lightgray;" />
-      <Button fx:id="AddClassButton" layoutX="210.0" layoutY="36.0" mnemonicParsing="false" onAction="#newClass" prefHeight="39.0" prefWidth="80.0" text="Add" />
+      <Button fx:id="AddClassButton" layoutX="210.0" layoutY="36.0" mnemonicParsing="false" onAction="#addClass" prefHeight="39.0" prefWidth="80.0" text="Add" />
       <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="216.0" text="please include name and Class section" textFill="#a4e445" />
    </children>
 </AnchorPane>
