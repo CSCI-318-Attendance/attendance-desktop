@@ -56,15 +56,13 @@ public class AddClassController implements Initializable
                     if(!contains)
                     {
                         if (save.saveClass(newSection)) {
-                            String code = save.getCode();
                             Platform.runLater(new Runnable() {
                                 @Override
                                 public void run() {
                                     main.DisplayClass();
-
                                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                     alert.setTitle("Information Dialog");
-                                    alert.setHeaderText("Students code to join class on their phones: " + code);
+                                    alert.setHeaderText("Students code to join class on their phones: " + save.getCode());
                                     alert.setContentText("To access a code later, right click on the class in the table.");
 
                                     alert.showAndWait();

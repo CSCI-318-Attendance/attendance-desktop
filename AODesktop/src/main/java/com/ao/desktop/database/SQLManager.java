@@ -63,7 +63,7 @@ public class SQLManager {
     public boolean saveClass(String newSection)
     {
         int rng = new Random().nextInt(1000);
-        String code = String.format("%04d", rng);
+        code = String.format("%04d", rng);
         String query = " INSERT INTO class_titles(title, code) VALUES(?, ?)";
         try {
             PreparedStatement prepStmt= conn.prepareStatement(query);
@@ -115,6 +115,8 @@ public class SQLManager {
     public List<Student> getStudents()
     {
         List<Student> students = new ArrayList<>();
+        Student fake = new Student("213454", "chris batrouni", "d237474e-2029-4b5f-8db4-84b3073bee41");
+        students.add(fake);
         String query = "SELECT * FROM students";
         try {
             PreparedStatement prepStmt = conn.prepareStatement(query);

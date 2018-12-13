@@ -30,9 +30,9 @@ public class ClassController implements Initializable
     Student s = new Student();
     MainController main= new MainController();
     Date date = new Date();
-    SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH;mm;ssZ");
+    SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH.mm.ssZ");
     String fdate = format.format(date);
-    private String path=System.getProperty("user.home") + "/desktop";
+    private String path=System.getProperty("user.home") + "/desktop/attendance-overview";
     private String fileName;
     private String newline="/n";
     @FXML
@@ -55,6 +55,7 @@ public class ClassController implements Initializable
     @FXML
     public void finish(ActionEvent e)
     {
+        close();
         done=true;
         fileWriter();
 
@@ -63,10 +64,10 @@ public class ClassController implements Initializable
     public void Return(ActionEvent r)
     {
         try {
+            close();
             done=true;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main_Screen.fxml"));
             Parent Main_Screen_Parent = loader.load();
-            ClassController controller = loader.getController();
             Scene Main_Screen_Scene = new Scene(Main_Screen_Parent);
             Stage Main_Stage = (Stage) ((Node) r.getSource()).getScene().getWindow();
             Main_Stage.setScene(Main_Screen_Scene);
@@ -104,7 +105,7 @@ public class ClassController implements Initializable
             CardTerminal terminal = terminals.list().get(0);
             duration = 0;
             isLooking = false;
-
+            innerThread = new Thread();
             readThread = new Thread(() -> {
                 Timer t = new Timer("NFC Timer");
                 t.scheduleAtFixedRate(new TimerTask() {
@@ -113,18 +114,24 @@ public class ClassController implements Initializable
                         if(done)
                         {
                             cancel();
+
                             return;
-                        }
-                        if (duration != THRESHOLD && !isLooking) {
-                            innerThread = new Thread(() -> {
-                                applicationId = readCard(terminal);
-                                if (applicationId != null) {
-                                    getID(applicationId);
-                                }
-                            });
-                            innerThread.start();
+                        } else {
+                            if (duration != THRESHOLD && !isLooking) {
+                                innerThread = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        applicationId = readCard(terminal);
+                                        if (applicationId != null) {
+                                            getID(applicationId);
+                                        }
+                                    }
+                                });
+                                innerThread.start();
+                            }
                         }
                         duration++;
+                        System.out.println("Still running...");
                     }
                 }, 0, 1000);
             });
@@ -137,8 +144,11 @@ public class ClassController implements Initializable
     private UUID readCard(CardTerminal terminal) {
         UUID applicationId = null;
         try {
+            if (done) {
+                return null;
+            }
             isLooking = true;
-            terminal.waitForCardPresent(5000);
+            terminal.waitForCardPresent(1000);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -178,7 +188,6 @@ public class ClassController implements Initializable
             System.out.println("Card Terminal Issue: " + ex);
             isLooking = false;
         }
-
         return applicationId;
     }
 
@@ -194,8 +203,10 @@ public class ClassController implements Initializable
             {
                 s.setPresent(true);
                 Platform.runLater(() -> {
-                    outputArea.appendText(s.getName() + " ID:" + s.getStudentId());
-                    outputArea.appendText(System.lineSeparator());
+                    if (!outputArea.getText().contains(s.getStudentId())) {
+                        outputArea.appendText(s.getName() + " ID:" + s.getStudentId());
+                        outputArea.appendText(System.lineSeparator());
+                    }
                 });
             }
             students.set(i, s);
@@ -219,9 +230,21 @@ public class ClassController implements Initializable
 
     public void fileWriter()
     {
+        File pathF = new File(path);
+        if (!pathF.exists()) {
+            if (!pathF.mkdir()) {
+                return;
+            }
+        }
+        System.out.println(fileName);
         File file=new File(path,fileName);
         try
         {
+            if (!file.exists()) {
+                if (!file.createNewFile()) {
+                    return;
+                }
+            }
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             bw.write("Student Attendance Roster");
             bw.write(System.lineSeparator());
@@ -245,11 +268,16 @@ public class ClassController implements Initializable
     }
 
     public void close() {
-        if (readThread != null) {
-            readThread.interrupt();
-        }
-        if (innerThread != null) {
-            innerThread.interrupt();
+        done = true;
+        try {
+            if (readThread != null) {
+                readThread = null;
+            }
+            if (innerThread != null) {
+                innerThread = null;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

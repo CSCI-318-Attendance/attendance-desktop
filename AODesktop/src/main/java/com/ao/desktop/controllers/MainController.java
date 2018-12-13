@@ -1,7 +1,6 @@
 package com.ao.desktop.controllers;
 import com.ao.desktop.database.SQLManager;
-import com.sun.deploy.util.FXLoader;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -22,10 +21,8 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
 public class MainController implements Initializable
 {
 
@@ -70,6 +67,7 @@ public class MainController implements Initializable
                     @Override
                     public void handle(WindowEvent event) {
                         control.close();
+                        Class_Stage.close();
                     }
                 });
             } catch (IOException ex) {
@@ -132,7 +130,7 @@ public class MainController implements Initializable
     public void removeClass(ActionEvent r)
     {
 
-        String remove =listClasses.getSelectionModel().getSelectedItem();
+        String remove = listClasses.getSelectionModel().getSelectedItem();
         if(remove == null)
         {
             noClassLabel.setText("Please select a class to remove");
@@ -140,6 +138,7 @@ public class MainController implements Initializable
         else
         {
             if (sql.removeClass(remove)) {
+                classesCodes.remove(remove);
                 DisplayClass();
             }
         }
