@@ -2,6 +2,7 @@ package com.ao.desktop.controllers;
 
 import com.ao.desktop.data.Student;
 import com.ao.desktop.database.SQLManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -100,7 +101,6 @@ public class ClassController implements Initializable
                     public void run() {
                         if(done)
                         {
-                            System.out.println("Finished");
                             cancel();
                             return;
                         }
@@ -114,7 +114,6 @@ public class ClassController implements Initializable
                             innerRead.start();
                         }
                         duration++;
-                        System.out.println("Running");
                     }
                 }, 0, 1000);
             });
@@ -177,12 +176,16 @@ public class ClassController implements Initializable
         System.out.println("id : " + id);
         for(int i=0;i<students.size();i++)
         {
-            if(id.equals(students.get(i).getStudentId()))
+            s = students.get(i);
+            if(id.equals(s.getDeviceID()))
             {
-                students.get(i).setPresent(true);
-                outputArea.appendText(students.get(i).getName());
-                outputArea.appendText(newline);
+                s.setPresent(true);
+                Platform.runLater(() -> {
+                    outputArea.appendText(s.getName());
+                    outputArea.appendText(newline);
+                });
             }
+            students.set(i, s);
         }
 
     }
