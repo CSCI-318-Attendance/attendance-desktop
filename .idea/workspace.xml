@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ebcd07e-c54e-46d8-a3e2-9b3e6605e5a9" name="Default Changelist" comment="" />
+    <list default="true" id="6ebcd07e-c54e-46d8-a3e2-9b3e6605e5a9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/database/SQLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/database/SQLManager.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,34 +56,37 @@
     <session id="625559585">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="5" />
+          <entry key="fxml" value="6" />
           <entry key="java" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="7" />
-          <entry key="XML" value="5" />
+          <entry key="XML" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="75" />
-          <entry key="java" value="3308" />
+          <entry key="java" value="3748" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3308" />
+          <entry key="JAVA" value="3748" />
           <entry key="XML" value="75" />
         </counts>
       </usages-collector>
@@ -118,17 +124,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
+            <state relative-caret-position="1496">
               <caret line="109" column="27" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
             </state>
           </provider>
         </entry>
@@ -136,8 +133,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/AddClassController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+            <state relative-caret-position="508">
+              <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -145,8 +142,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/database/SQLManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="678">
+              <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -176,18 +173,18 @@
         <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/ClassObject.java" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/ClassController.java" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/resources/AddClass_Screen.fxml" />
-        <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/AddClassController.java" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/resources/RemoveClass_Screen.fxml" />
-        <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/database/SQLManager.java" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java" />
+        <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/database/SQLManager.java" />
+        <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/AddClassController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="516" />
-    <option name="height" value="524" />
+    <option name="x" value="-6" />
+    <option name="y" value="-6" />
+    <option name="width" value="258" />
+    <option name="height" value="262" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -196,7 +193,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,12 +227,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544651188076" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544661647891" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -295,10 +292,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="885" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1814059" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.02292111" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -307,13 +304,13 @@
       <window_info id="Favorites" order="6" weight="0.32955405" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.71201813" visible="true" weight="0.080901854" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7110874" visible="true" weight="0.1637744" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.28798187" side_tool="true" visible="true" weight="0.080901854" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2889126" side_tool="true" visible="true" weight="0.1637744" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32891247" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -381,14 +378,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/resources/Class_Screen.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="304" selection-start-line="9" selection-start-column="304" selection-end-line="9" selection-end-column="304" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/ClassObject.java" />
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/resources/main_screen.fxml">
       <provider selected="true" editor-type-id="text-editor">
@@ -406,6 +395,8 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/removeController.java" />
+    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/resources/RemoveClass_Screen.fxml" />
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -426,49 +417,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/removeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/resources/RemoveClass_Screen.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="71" lean-forward="true" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="578">
           <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java">
+    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/resources/Class_Screen.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="109" column="27" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
+        <state relative-caret-position="51">
+          <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/database/SQLManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        <state relative-caret-position="678">
+          <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="109" column="27" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/AddClassController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+        <state relative-caret-position="508">
+          <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
         </state>
       </provider>
     </entry>

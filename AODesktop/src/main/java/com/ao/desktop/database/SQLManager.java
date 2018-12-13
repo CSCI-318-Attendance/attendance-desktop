@@ -89,7 +89,7 @@ public class SQLManager {
     }
     public boolean removeClass(String name)
     {
-        String query = "Delete * FROM class_titles WHERE title=?";
+        String query = "Delete FROM class_titles WHERE title=?";
         try {
             PreparedStatement prepStmt =conn.prepareStatement(query);
             prepStmt.setString(1,name);

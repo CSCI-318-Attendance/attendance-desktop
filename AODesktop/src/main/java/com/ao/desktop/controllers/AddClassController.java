@@ -1,10 +1,12 @@
 package com.ao.desktop.controllers;
 
 import com.ao.desktop.database.SQLManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -21,6 +23,8 @@ public class AddClassController implements Initializable
     private TextField ClassNameField;
     @FXML
     private Button AddClassButton;
+    @FXML
+    private Label errorLabel;
     private String newSection;
 
 
@@ -31,6 +35,7 @@ public class AddClassController implements Initializable
 
     public void addClass(ActionEvent add)
     {
+
         save=new SQLManager();
         newSection = ClassNameField.getText();
         Thread savethread = new Thread(new Runnable() {
@@ -39,13 +44,45 @@ public class AddClassController implements Initializable
             {
                 if(save.isInitialize())
                 {
-                    save.saveClass(newSection);
+                    List<String> list= save.getClasses();
+                    boolean contains=false;
+                    for(int i=0; i<list.size(); i++)
+                    {
+                        if(list.get(i).equalsIgnoreCase(newSection))
+                        {
+                            contains=true;
+                            break;
+                        }
+                    }
+                    if(!contains)
+                    {
+                        save.saveClass(newSection);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run()
+                            {
+                                main.DisplayClass();
+                                main.AddStage.close();
+                            }
+                        });
+
+                    }
+                   else
+                    {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run()
+                            {
+                                errorLabel.setText("Class already exists");
+                            }
+                        });
+
+                    }
                 }
             }
         });
         savethread.start();
-        main.DisplayClass();
-        main.AddStage.close();
+
     }
 
 
