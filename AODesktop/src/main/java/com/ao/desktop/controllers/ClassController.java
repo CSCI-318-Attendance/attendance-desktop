@@ -228,8 +228,15 @@ public class ClassController implements Initializable
             for(int i=0; i<students.size(); i++)
             {
                 s=students.get(i);
-                bw.write(s.getName() + " ID: " + s.getStudentId());
-                bw.write(System.lineSeparator());
+                if(s.getPresent()) {
+                    bw.write(s.getName() + " ID: " + s.getStudentId() + " status: Present");
+                    bw.write(System.lineSeparator());
+                }
+                else
+                {
+                    bw.write(s.getName() + " ID: " + s.getStudentId() + " status: Absent");
+                    bw.write(System.lineSeparator());
+                }
             }
             bw.close();
         } catch (IOException e) {
