@@ -51,9 +51,9 @@ public class MainController implements Initializable
         }
         else {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Class_Screen.fxml"));
-                Parent Class_Screen_Parent = (Parent) loader.load();
-                ClassController control = loader.<ClassController> getController();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Class_Screen.fxml"));
+                Parent Class_Screen_Parent = loader.load();
+                ClassController control = loader.getController();
                 control.setClassName(selectedClass);
                 Scene Class_Screen_Scene = new Scene(Class_Screen_Parent);
                 Stage Class_Stage = (Stage) ((Node) start.getSource()).getScene().getWindow();

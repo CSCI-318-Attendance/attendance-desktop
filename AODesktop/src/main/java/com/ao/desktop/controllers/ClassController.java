@@ -151,15 +151,17 @@ public class ClassController implements Initializable
             command = new CommandAPDU(check_id);
             response = channel.transmit(command);
             byte[] rec_id = response.getBytes();
-            byte[] uuid = new byte[rec_id.length - 4];
             for (byte e : rec_id) {
                 System.out.print(String.format("%02X", e));
             }
-            System.out.println();
-            if (uuid.length >= 0) {
-                System.arraycopy(rec_id, 3, uuid, 0, uuid.length);
+            byte[] bytes = new byte[rec_id.length];
+            if (rec_id.length - 2 >= 0) {
+                System.arraycopy(rec_id, 2, bytes, 0, rec_id.length - 2);
             }
-            applicationId = UUID.fromString(new String(uuid));
+            System.out.println();
+            String uid = new String(bytes).trim();
+            System.out.println(uid);
+            applicationId = UUID.fromString(uid);
             System.out.println(applicationId.toString());
             c.disconnect(true);
             isLooking = false;
