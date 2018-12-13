@@ -84,10 +84,16 @@ public class ClassController implements Initializable
                         {
                             System.out.println("Finished");
                             cancel();
+                            return;
                         }
                         if (duration != THRESHOLD && !isLooking) {
-                            applicationId = readCard(terminal);
-                            getID(applicationId);
+                            Thread innerRead = new Thread(() -> {
+                                applicationId = readCard(terminal);
+                                if (applicationId != null) {
+                                    getID(applicationId);
+                                }
+                            });
+                            innerRead.start();
                         }
                         duration++;
                         System.out.println("Running");
@@ -104,7 +110,7 @@ public class ClassController implements Initializable
         UUID applicationId = null;
         try {
             isLooking = true;
-            terminal.waitForCardPresent(1000 * 60);
+            terminal.waitForCardPresent(5000);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -165,12 +171,10 @@ public class ClassController implements Initializable
         students=new ArrayList<>();
         done=false;
         applicationId = null;
-        startReader();
-
         SQLManager manager = new SQLManager();
         if (manager.isInitialize()) {
             students = manager.getStudents();
         }
-
+        startReader();
     }
 }
