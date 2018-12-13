@@ -26,14 +26,14 @@ import java.util.*;
 
 public class ClassController implements Initializable
 {
+    String className;
     Student s = new Student();
     MainController main= new MainController();
     Date date = new Date();
     SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH;mm;ssZ");
     String fdate = format.format(date);
     private String path=System.getProperty("user.home") + "/desktop";
-    private String fileName=main.getSelected() + " " + fdate + ".txt";
-    private File file=new File(path,fileName);
+    private String fileName;
     private String newline="/n";
     @FXML
     private TextArea outputArea;
@@ -43,6 +43,13 @@ public class ClassController implements Initializable
     private Button finishButton;
     private boolean done;
     List<Student> students;
+
+    public void setClassName(String name)
+    {
+        className = name;
+        fileName = className + " " + fdate + ".txt";
+
+    }
     @FXML
     public void finish(ActionEvent e)
     {
@@ -181,7 +188,7 @@ public class ClassController implements Initializable
             {
                 s.setPresent(true);
                 Platform.runLater(() -> {
-                    outputArea.appendText(s.getName() + ":" + s.getStudentId());
+                    outputArea.appendText(s.getName() + " ID:" + s.getStudentId());
                     outputArea.appendText(System.lineSeparator());
                 });
             }
@@ -206,6 +213,7 @@ public class ClassController implements Initializable
 
     public void fileWriter()
     {
+        File file=new File(path,fileName);
         try
         {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));

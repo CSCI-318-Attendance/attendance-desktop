@@ -1,5 +1,7 @@
 package com.ao.desktop.controllers;
 import com.ao.desktop.database.SQLManager;
+import com.sun.deploy.util.FXLoader;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,10 +35,12 @@ public class MainController implements Initializable
     private Button goback;
     @FXML
     ListView<String> listClasses = new ListView<String>();
-    public String selectedClass;
+    String selectedClass;
     Stage AddStage = new Stage();
     AddClassController get = new AddClassController();
     SQLManager sql = new SQLManager();
+
+
     public void StartButton(ActionEvent start) throws IOException
     {
 
@@ -47,7 +51,10 @@ public class MainController implements Initializable
         }
         else {
             try {
-                Parent Class_Screen_Parent = FXMLLoader.load(getClass().getResource("/Class_Screen.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Class_Screen.fxml"));
+                Parent Class_Screen_Parent = (Parent) loader.load();
+                ClassController control = loader.<ClassController> getController();
+                control.setClassName(selectedClass);
                 Scene Class_Screen_Scene = new Scene(Class_Screen_Parent);
                 Stage Class_Stage = (Stage) ((Node) start.getSource()).getScene().getWindow();
                 Class_Stage.setScene(Class_Screen_Scene);
@@ -58,10 +65,7 @@ public class MainController implements Initializable
         }
     }
 
-    public String getSelected()
-    {
-        return selectedClass;
-    }
+
     @FXML
     public void addClass(ActionEvent add)
     {
