@@ -181,8 +181,8 @@ public class ClassController implements Initializable
             {
                 s.setPresent(true);
                 Platform.runLater(() -> {
-                    outputArea.appendText(s.getName());
-                    outputArea.appendText(newline);
+                    outputArea.appendText(s.getName() + " " + s.getStudentId());
+                    outputArea.appendText(System.lineSeparator());
                 });
             }
             students.set(i, s);
@@ -193,6 +193,7 @@ public class ClassController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         outputArea.appendText("Present Students:");
+        outputArea.appendText(System.lineSeparator());
         students=new ArrayList<>();
         done=false;
         applicationId = null;
