@@ -1,5 +1,7 @@
 package com.ao.desktop.database;
 
+import com.ao.desktop.data.Student;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,8 +93,8 @@ public class SQLManager {
     {
         String query = "Delete FROM class_titles WHERE title=?";
         try {
-            PreparedStatement prepStmt =conn.prepareStatement(query);
-            prepStmt.setString(1,name);
+            PreparedStatement prepStmt = conn.prepareStatement(query);
+            prepStmt.setString(1, name);
             prepStmt.execute();
             prepStmt.close();
             return true;
@@ -101,17 +103,21 @@ public class SQLManager {
         }
         return false;
     }
-    public String getStudent(String id)
+    public List<Student> getStudents()
     {
-        String name="";
+        List<Student> students = new ArrayList<>();
         String query = "SELECT * FROM students";
         try {
             PreparedStatement prepStmt = conn.prepareStatement(query);
             ResultSet rs = prepStmt.executeQuery();
-            name =rs.getString("name");
+            while (rs.next()) {
+                Student student = new Student(rs.getString("device_unique_id"),
+                        rs.getString("username"));
+                students.add(student);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return name;
+        return students;
     }
 }

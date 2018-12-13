@@ -1,20 +1,19 @@
 package com.ao.desktop.controllers;
 
-import javafx.event.ActionEvent;
+import com.ao.desktop.data.Student;
+import com.ao.desktop.database.SQLManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javax.smartcardio.*;
 import javax.smartcardio.CommandAPDU;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ClassController implements Initializable
 {
 
-    private byte[] selectaid = new byte[] {
+    private byte[] select_aid = new byte[] {
             (byte) 0x00, //class of command
             (byte) 0xA4, //instruction
             (byte) 0x04, //parameter 1
@@ -24,60 +23,100 @@ public class ClassController implements Initializable
             //max length of response
     };
 
-    private byte[] checkid = new byte[] {
+    private byte[] check_id = new byte[] {
             (byte) 0x80, (byte) 0x03, (byte) 0x00, (byte) 0x00
     };
-    public String getDeviceUUID() {
-        String applicationId = "";
-        TerminalFactory factory = TerminalFactory.getDefault();
+
+    private long duration;
+    private final long THRESHOLD = (1000 * (5 * 60));
+    private boolean isLooking;
+    private UUID applicationId;
+
+    private void startReader() {
         try {
+            TerminalFactory factory = TerminalFactory.getDefault();
             CardTerminals terminals = factory.terminals();
             CardTerminal terminal = terminals.list().get(0);
-            terminal.waitForCardPresent(2000);
+            duration = 0;
+            isLooking = false;
+
+            Thread readThread = new Thread(() -> {
+                Timer t = new Timer("NFC Timer");
+                t.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (duration != THRESHOLD && !isLooking) {
+                            applicationId = readCard(terminal);
+                        }
+                        duration++;
+                    }
+                }, 0, 1000);
+            });
+            readThread.start();
+        } catch (CardException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private UUID readCard(CardTerminal terminal) {
+        UUID applicationId = null;
+        try {
+            isLooking = true;
+            terminal.waitForCardPresent(1000 * 60);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             Card c = terminal.connect("*");
-            System.out.println("Card: " + c);
             CardChannel channel = c.getBasicChannel();
-            System.out.println("Channel: " + channel);
-            CommandAPDU command = new CommandAPDU(selectaid);
+            CommandAPDU command = new CommandAPDU(select_aid);
             ResponseAPDU response = channel.transmit(command);
-            byte recv[] = response.getBytes();
-            System.out.println("SelectAID: ");
-            for (int i = 0; i < recv.length; i++) {
-                System.out.print(String.format("%02X", recv[i]));
+            byte rec_aid[] = response.getBytes();
+            for (byte e : rec_aid) {
+                System.out.print(String.format("%02X", e));
             }
-            System.out.println();
-            System.out.println("Check Id: ");
-            command = new CommandAPDU(checkid);
+            command = new CommandAPDU(check_id);
             response = channel.transmit(command);
-            byte[] recv4 = response.getBytes();
-            byte[] uuid = new byte[recv4.length - 4];
-            for (int i = 0; i < recv4.length; i++) {
-                System.out.print(String.format("%02X", recv4[i]));
+            byte[] rec_id = response.getBytes();
+            byte[] uuid = new byte[rec_id.length - 4];
+            for (byte e : rec_id) {
+                System.out.print(String.format("%02X", e));
             }
             System.out.println();
-            for (int i = 0; i < uuid.length; i++) {
-                uuid[i] = recv4[i + 3];
+            if (uuid.length >= 0) {
+                System.arraycopy(rec_id, 3, uuid, 0, uuid.length);
             }
-            applicationId = new String(uuid);
-            System.out.println(new String(uuid));
+            applicationId = UUID.fromString(new String(uuid));
+            System.out.println(applicationId.toString());
             c.disconnect(true);
-        } catch (CardException ex) {
+            isLooking = false;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception ex) {
             System.out.println("Card Terminal Issue: " + ex);
+            isLooking = false;
         }
+
         return applicationId;
     }
-
 
    @FXML
     public void initialize(URL location, ResourceBundle resources)
     {
-        String id = getDeviceUUID();
-        System.out.println("id");
+        List<Student> students;
+        applicationId = null;
+        startReader();
+        String id = applicationId.toString();
+        System.out.println("id : " + id);
+
+        SQLManager manager = new SQLManager();
+        if (manager.isInitialize()) {
+            students = manager.getStudents();
+        }
 
     }
 }
