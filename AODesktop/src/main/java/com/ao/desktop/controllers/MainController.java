@@ -2,9 +2,12 @@ package com.ao.desktop.controllers;
 import com.ao.desktop.database.SQLManager;
 import com.sun.deploy.util.FXLoader;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,9 +18,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 public class MainController implements Initializable
@@ -35,6 +41,7 @@ public class MainController implements Initializable
     private Button goback;
     @FXML
     ListView<String> listClasses = new ListView<String>();
+    HashMap<String, String> classesCodes = new HashMap<>();
     String selectedClass;
     Stage AddStage = new Stage();
     AddClassController get = new AddClassController();
@@ -59,6 +66,12 @@ public class MainController implements Initializable
                 Stage Class_Stage = (Stage) ((Node) start.getSource()).getScene().getWindow();
                 Class_Stage.setScene(Class_Screen_Scene);
                 Class_Stage.show();
+                Class_Stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        control.close();
+                    }
+                });
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -90,12 +103,14 @@ public class MainController implements Initializable
 
         if(sql.isInitialize())
         {
-            List<String> list = sql.getClasses();
+            List<String[]> classesValues = sql.getClasses();
+            for (String[] s : classesValues) {
+                classesCodes.put(s[0], s[1]);
+            }
+            List<String> list = new ArrayList<>(classesCodes.keySet());
             ObservableList<String> Classes = FXCollections.observableArrayList(list);
             listClasses.setItems(Classes);
         }
-
-
 
     }
 
@@ -103,6 +118,15 @@ public class MainController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         DisplayClass();
+        listClasses.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String code = classesCodes.get(newValue);
+                if (code != null) {
+                    noClassLabel.setText("Class Code: " + code);
+                }
+            }
+        });
     }
     @FXML
     public void removeClass(ActionEvent r)
@@ -115,8 +139,9 @@ public class MainController implements Initializable
         }
         else
         {
-            sql.removeClass(remove);
-            DisplayClass();
+            if (sql.removeClass(remove)) {
+                DisplayClass();
+            }
         }
 
     }

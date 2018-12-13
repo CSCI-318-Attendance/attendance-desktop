@@ -43,6 +43,8 @@ public class ClassController implements Initializable
     private Button finishButton;
     private boolean done;
     List<Student> students;
+    private Thread readThread;
+    private Thread innerThread;
 
     public void setClassName(String name)
     {
@@ -60,9 +62,11 @@ public class ClassController implements Initializable
     @FXML
     public void Return(ActionEvent r)
     {
-        done=true;
         try {
-            Parent Main_Screen_Parent = FXMLLoader.load(getClass().getResource("/Main_Screen.fxml"));
+            done=true;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main_Screen.fxml"));
+            Parent Main_Screen_Parent = loader.load();
+            ClassController controller = loader.getController();
             Scene Main_Screen_Scene = new Scene(Main_Screen_Parent);
             Stage Main_Stage = (Stage) ((Node) r.getSource()).getScene().getWindow();
             Main_Stage.setScene(Main_Screen_Scene);
@@ -101,7 +105,7 @@ public class ClassController implements Initializable
             duration = 0;
             isLooking = false;
 
-            Thread readThread = new Thread(() -> {
+            readThread = new Thread(() -> {
                 Timer t = new Timer("NFC Timer");
                 t.scheduleAtFixedRate(new TimerTask() {
                     @Override
@@ -112,13 +116,13 @@ public class ClassController implements Initializable
                             return;
                         }
                         if (duration != THRESHOLD && !isLooking) {
-                            Thread innerRead = new Thread(() -> {
+                            innerThread = new Thread(() -> {
                                 applicationId = readCard(terminal);
                                 if (applicationId != null) {
                                     getID(applicationId);
                                 }
                             });
-                            innerRead.start();
+                            innerThread.start();
                         }
                         duration++;
                     }
@@ -230,6 +234,15 @@ public class ClassController implements Initializable
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void close() {
+        if (readThread != null) {
+            readThread.interrupt();
+        }
+        if (innerThread != null) {
+            innerThread.interrupt();
         }
     }
 }

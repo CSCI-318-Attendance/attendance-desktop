@@ -5,13 +5,12 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AddClassController implements Initializable
@@ -44,11 +43,11 @@ public class AddClassController implements Initializable
             {
                 if(save.isInitialize())
                 {
-                    List<String> list= save.getClasses();
+                    List<String[]> list= save.getClasses();
                     boolean contains=false;
-                    for(int i=0; i<list.size(); i++)
+                    for(String[] s : list)
                     {
-                        if(list.get(i).equalsIgnoreCase(newSection))
+                        if(s[0].equalsIgnoreCase(newSection))
                         {
                             contains=true;
                             break;
@@ -56,15 +55,24 @@ public class AddClassController implements Initializable
                     }
                     if(!contains)
                     {
-                        save.saveClass(newSection);
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run()
-                            {
-                                main.DisplayClass();
-                                main.AddStage.close();
-                            }
-                        });
+                        if (save.saveClass(newSection)) {
+                            String code = save.getCode();
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    main.DisplayClass();
+
+                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                    alert.setTitle("Information Dialog");
+                                    alert.setHeaderText("Students code to join class on their phones: " + code);
+                                    alert.setContentText("To access a code later, right click on the class in the table.");
+
+                                    alert.showAndWait();
+
+                                    main.AddStage.close();
+                                }
+                            });
+                        }
 
                     }
                    else

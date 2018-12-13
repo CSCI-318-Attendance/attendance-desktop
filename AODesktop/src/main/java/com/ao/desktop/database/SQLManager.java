@@ -5,6 +5,7 @@ import com.ao.desktop.data.Student;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SQLManager {
 
@@ -15,6 +16,7 @@ public class SQLManager {
 
     private boolean isConnected = false;
     private Connection conn = null;
+    private String code = null;
 
     public SQLManager() {
         try {
@@ -60,10 +62,13 @@ public class SQLManager {
     }
     public boolean saveClass(String newSection)
     {
-        String query = " INSERT INTO class_titles(title) VALUES(?)";
+        int rng = new Random().nextInt(1000);
+        String code = String.format("%04d", rng);
+        String query = " INSERT INTO class_titles(title, code) VALUES(?, ?)";
         try {
             PreparedStatement prepStmt= conn.prepareStatement(query);
             prepStmt.setString(1, newSection);
+            prepStmt.setString(2, code);
             prepStmt.execute();
             prepStmt.close();
             return true;
@@ -72,16 +77,20 @@ public class SQLManager {
         }
         return false;
     }
-    public List<String> getClasses()
+    public List<String[]> getClasses()
     {
-        List<String> classNames = new ArrayList<>();
+        List<String[]> classNames = new ArrayList<>();
         String query = "SELECT * FROM class_titles";
         try {
+            String[] classVals;
             PreparedStatement prepStmt =conn.prepareStatement(query);
             ResultSet rs = prepStmt.executeQuery();
             while(rs.next())
             {
-                classNames.add(rs.getString("title"));
+                classVals = new String[2];
+                classVals[0] = rs.getString("title");
+                classVals[1] = rs.getString("code");
+                classNames.add(classVals);
             }
 
         } catch (SQLException e) {
@@ -119,5 +128,8 @@ public class SQLManager {
             e.printStackTrace();
         }
         return students;
+    }
+    public String getCode() {
+        return code;
     }
 }
