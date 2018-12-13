@@ -58,6 +58,10 @@ public class MainController implements Initializable
         }
     }
 
+    public String getSelected()
+    {
+        return selectedClass;
+    }
     @FXML
     public void addClass(ActionEvent add)
     {

@@ -10,16 +10,32 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import javax.smartcardio.*;
 import javax.smartcardio.CommandAPDU;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ClassController implements Initializable
 {
+    Student s = new Student();
+    MainController main= new MainController();
+    Date date = new Date();
+    SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH;mm;ssZ");
+    String fdate = format.format(date);
+    private String path=System.getProperty("user.home") + "/desktop";
+    private String fileName=main.getSelected() + " " + fdate + ".txt";
+    private File file=new File(path,fileName);
+    private String newline="/n";
+    @FXML
+    private TextArea outputArea;
     @FXML
     private Button returnButton;
     @FXML
@@ -30,6 +46,8 @@ public class ClassController implements Initializable
     public void finish(ActionEvent e)
     {
         done=true;
+        fileWriter();
+
     }
     @FXML
     public void Return(ActionEvent r)
@@ -154,6 +172,7 @@ public class ClassController implements Initializable
 
     public void getID(UUID ApplicationID)
     {
+
         String id = ApplicationID.toString();
         System.out.println("id : " + id);
         for(int i=0;i<students.size();i++)
@@ -161,6 +180,8 @@ public class ClassController implements Initializable
             if(id.equals(students.get(i).getStudentId()))
             {
                 students.get(i).setPresent(true);
+                outputArea.appendText(students.get(i).getName());
+                outputArea.appendText(newline);
             }
         }
 
@@ -168,6 +189,7 @@ public class ClassController implements Initializable
    @FXML
     public void initialize(URL location, ResourceBundle resources)
     {
+        outputArea.appendText("Present Students:");
         students=new ArrayList<>();
         done=false;
         applicationId = null;
@@ -176,5 +198,24 @@ public class ClassController implements Initializable
             students = manager.getStudents();
         }
         startReader();
+    }
+
+    public void fileWriter()
+    {
+        try
+        {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            bw.write("Student Attendance Roster");
+            bw.write(System.lineSeparator());
+            for(int i=0; i<students.size(); i++)
+            {
+                s=students.get(i);
+                bw.write(s.getName() + " ID: " + s.getStudentId());
+                bw.write(System.lineSeparator());
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

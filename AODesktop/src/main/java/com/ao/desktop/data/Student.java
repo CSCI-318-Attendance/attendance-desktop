@@ -7,6 +7,9 @@ public class Student {
     private boolean present;
     private String deviceID;
 
+    public Student()
+    {}
+
     public Student(String studentId, String name,String deviceID)
     {
         this.deviceID=deviceID;

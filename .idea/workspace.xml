@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6ebcd07e-c54e-46d8-a3e2-9b3e6605e5a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AODesktop/src/main/resources/Class_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AODesktop/src/main/resources/Class_Screen.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,12 +81,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="75" />
-          <entry key="java" value="4531" />
+          <entry key="java" value="5549" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4531" />
+          <entry key="JAVA" value="5549" />
           <entry key="XML" value="75" />
         </counts>
       </usages-collector>
@@ -111,13 +112,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/ClassController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
+            <state relative-caret-position="3264">
+              <caret line="213" column="13" lean-forward="true" selection-start-line="213" selection-start-column="13" selection-end-line="213" selection-end-column="13" />
               <folding>
-                <element signature="e#568#569#0" expanded="true" />
-                <element signature="e#587#588#0" expanded="true" />
-                <element signature="e#2422#2906#0" expanded="true" />
-                <element signature="e#2905#2906#0" expanded="true" />
+                <element signature="e#2422#3318#0" expanded="true" />
+                <element signature="e#3317#3318#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,8 +125,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="697">
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+              <folding>
+                <element signature="e#1922#1923#0" expanded="true" />
+                <element signature="e#1957#1958#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -171,8 +174,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/data/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+            <state relative-caret-position="187">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -200,18 +203,17 @@
         <option value="$PROJECT_DIR$/AODesktop/src/main/resources/AddClass_Screen.fxml" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/resources/RemoveClass_Screen.fxml" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/AddClassController.java" />
-        <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/database/SQLManager.java" />
+        <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/data/Student.java" />
         <option value="$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/ClassController.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-6" />
-    <option name="y" value="-6" />
-    <option name="width" value="258" />
-    <option name="height" value="262" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="954" />
+    <option name="width" value="972" />
+    <option name="height" value="1046" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -266,7 +268,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544661647891" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/GuProject" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -326,10 +328,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="954" y="0" width="972" height="1046" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14072494" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28947368" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -338,7 +340,7 @@
       <window_info id="Favorites" order="6" weight="0.32955405" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7110874" visible="true" weight="0.4186551" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7110874" visible="true" weight="0.24342105" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -470,8 +472,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/data/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        <state relative-caret-position="187">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -488,20 +490,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="697">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#1922#1923#0" expanded="true" />
+            <element signature="e#1957#1958#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AODesktop/src/main/java/com/ao/desktop/controllers/ClassController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
+        <state relative-caret-position="3264">
+          <caret line="213" column="13" lean-forward="true" selection-start-line="213" selection-start-column="13" selection-end-line="213" selection-end-column="13" />
           <folding>
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#587#588#0" expanded="true" />
-            <element signature="e#2422#2906#0" expanded="true" />
-            <element signature="e#2905#2906#0" expanded="true" />
+            <element signature="e#2422#3318#0" expanded="true" />
+            <element signature="e#3317#3318#0" expanded="true" />
           </folding>
         </state>
       </provider>

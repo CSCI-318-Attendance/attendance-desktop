@@ -24,7 +24,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <TextArea layoutX="26.0" layoutY="69.0" prefHeight="296.0" prefWidth="287.0" />
+      <TextArea fx:id="outputArea" layoutX="26.0" layoutY="69.0" prefHeight="296.0" prefWidth="287.0" />
       <Button fx:id="returnButton" layoutX="379.0" layoutY="330.0" mnemonicParsing="false" onAction="#Return" prefHeight="35.0" prefWidth="68.0" text="Return">
          <font>
             <Font name="System Bold" size="12.0" />
