@@ -111,8 +111,8 @@ public class SQLManager {
             PreparedStatement prepStmt = conn.prepareStatement(query);
             ResultSet rs = prepStmt.executeQuery();
             while (rs.next()) {
-                Student student = new Student(rs.getString("device_unique_id"),
-                        rs.getString("username"));
+                Student student = new Student(rs.getString("student_id"),
+                        rs.getString("username"), rs.getString("device_unique_id"));
                 students.add(student);
             }
         } catch (SQLException e) {

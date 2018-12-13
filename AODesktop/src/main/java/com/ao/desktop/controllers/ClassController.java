@@ -2,16 +2,51 @@ package com.ao.desktop.controllers;
 
 import com.ao.desktop.data.Student;
 import com.ao.desktop.database.SQLManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import javax.smartcardio.*;
 import javax.smartcardio.CommandAPDU;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 public class ClassController implements Initializable
 {
+    @FXML
+    private Button returnButton;
+    @FXML
+    private Button finishButton;
+    private boolean done;
+    List<Student> students;
+    @FXML
+    public void finish(ActionEvent e)
+    {
+        done=true;
+    }
+    @FXML
+    public void Return(ActionEvent r)
+    {
+        done=true;
+        try {
+            Parent Main_Screen_Parent = FXMLLoader.load(getClass().getResource("/Main_Screen.fxml"));
+            Scene Main_Screen_Scene = new Scene(Main_Screen_Parent);
+            Stage Main_Stage = (Stage) ((Node) r.getSource()).getScene().getWindow();
+            Main_Stage.setScene(Main_Screen_Scene);
+            Main_Stage.show();
+        }
+        catch(IOException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
 
     private byte[] select_aid = new byte[] {
             (byte) 0x00, //class of command
@@ -45,15 +80,22 @@ public class ClassController implements Initializable
                 t.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
+                        if(done)
+                        {
+                            System.out.println("Finished");
+                            cancel();
+                        }
                         if (duration != THRESHOLD && !isLooking) {
                             applicationId = readCard(terminal);
+                            getID(applicationId);
                         }
                         duration++;
+                        System.out.println("Running");
                     }
                 }, 0, 1000);
             });
             readThread.start();
-        } catch (CardException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -104,14 +146,26 @@ public class ClassController implements Initializable
         return applicationId;
     }
 
+    public void getID(UUID ApplicationID)
+    {
+        String id = ApplicationID.toString();
+        System.out.println("id : " + id);
+        for(int i=0;i<students.size();i++)
+        {
+            if(id.equals(students.get(i).getStudentId()))
+            {
+                students.get(i).setPresent(true);
+            }
+        }
+
+    }
    @FXML
     public void initialize(URL location, ResourceBundle resources)
     {
-        List<Student> students;
+        students=new ArrayList<>();
+        done=false;
         applicationId = null;
         startReader();
-        String id = applicationId.toString();
-        System.out.println("id : " + id);
 
         SQLManager manager = new SQLManager();
         if (manager.isInitialize()) {
