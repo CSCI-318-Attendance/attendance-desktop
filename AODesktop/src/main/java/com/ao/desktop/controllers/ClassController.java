@@ -181,7 +181,7 @@ public class ClassController implements Initializable
             {
                 s.setPresent(true);
                 Platform.runLater(() -> {
-                    outputArea.appendText(s.getName() + " " + s.getStudentId());
+                    outputArea.appendText(s.getName() + ":" + s.getStudentId());
                     outputArea.appendText(System.lineSeparator());
                 });
             }
